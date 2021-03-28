@@ -1,0 +1,7 @@
+RewriteEngine on
+RewriteRule ^acceuil$ index.php
+RewriteRule ^login$ login.php
+RewriteRule ^presence$ attendance.php
+RewriteRule ^grade$ grade.php
+RewriteRule ^teacher$ teacher.php
+RewriteRule ^student$ student.php

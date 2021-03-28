@@ -2,7 +2,7 @@
 
 //database_connection.php
 
-$connect = new PDO("mysql:host=localhost;dbname=attendance","root","");
+$connect = new PDO("mysql:host=localhost;dbname=attendance", "root", "");
 
 $base_url = "http://localhost/tutorial/student-attendance-system-in-php-using-ajax/";
 
@@ -23,9 +23,8 @@ function load_grade_list($connect)
 	$statement->execute();
 	$result = $statement->fetchAll();
 	$output = '';
-	foreach($result as $row)
-	{
-		$output .= '<option value="'.$row["grade_id"].'">'.$row["grade_name"].'</option>';
+	foreach ($result as $row) {
+		$output .= '<option value="' . $row["grade_id"] . '">' . $row["grade_name"] . '</option>';
 	}
 	return $output;
 }
@@ -36,22 +35,18 @@ function get_attendance_percentage($connect, $student_id)
 	SELECT 
 		ROUND((SELECT COUNT(*) FROM tbl_attendance 
 		WHERE attendance_status = 'Present' 
-		AND student_id = '".$student_id."') 
+		AND student_id = '" . $student_id . "') 
 	* 100 / COUNT(*)) AS percentage FROM tbl_attendance 
-	WHERE student_id = '".$student_id."'
+	WHERE student_id = '" . $student_id . "'
 	";
 
 	$statement = $connect->prepare($query);
 	$statement->execute();
 	$result = $statement->fetchAll();
-	foreach($result as $row)
-	{
-		if($row["percentage"] > 0)
-		{
+	foreach ($result as $row) {
+		if ($row["percentage"] > 0) {
 			return $row["percentage"] . '%';
-		}
-		else
-		{
+		} else {
 			return 'NA';
 		}
 	}
@@ -61,7 +56,7 @@ function Get_student_name($connect, $student_id)
 {
 	$query = "
 	SELECT student_name FROM tbl_student 
-	WHERE student_id = '".$student_id."'
+	WHERE student_id = '" . $student_id . "'
 	";
 
 	$statement = $connect->prepare($query);
@@ -70,8 +65,7 @@ function Get_student_name($connect, $student_id)
 
 	$result = $statement->fetchAll();
 
-	foreach($result as $row)
-	{
+	foreach ($result as $row) {
 		return $row["student_name"];
 	}
 }
@@ -82,13 +76,12 @@ function Get_student_grade_name($connect, $student_id)
 	SELECT tbl_grade.grade_name FROM tbl_student 
 	INNER JOIN tbl_grade 
 	ON tbl_grade.grade_id = tbl_student.student_grade_id 
-	WHERE tbl_student.student_id = '".$student_id."'
+	WHERE tbl_student.student_id = '" . $student_id . "'
 	";
 	$statement = $connect->prepare($query);
 	$statement->execute();
 	$result = $statement->fetchAll();
-	foreach($result as $row)
-	{
+	foreach ($result as $row) {
 		return $row['grade_name'];
 	}
 }
@@ -102,13 +95,12 @@ function Get_student_teacher_name($connect, $student_id)
 	ON tbl_grade.grade_id = tbl_student.student_grade_id 
 	INNER JOIN tbl_teacher 
 	ON tbl_teacher.teacher_grade_id = tbl_grade.grade_id 
-	WHERE tbl_student.student_id = '".$student_id."'
+	WHERE tbl_student.student_id = '" . $student_id . "'
 	";
 	$statement = $connect->prepare($query);
 	$statement->execute();
 	$result = $statement->fetchAll();
-	foreach($result as $row)
-	{
+	foreach ($result as $row) {
 		return $row["teacher_name"];
 	}
 }
@@ -117,15 +109,12 @@ function Get_grade_name($connect, $grade_id)
 {
 	$query = "
 	SELECT grade_name FROM tbl_grade 
-	WHERE grade_id = '".$grade_id."'
+	WHERE grade_id = '" . $grade_id . "'
 	";
 	$statement = $connect->prepare($query);
 	$statement->execute();
 	$result = $statement->fetchAll();
-	foreach($result as $row)
-	{
+	foreach ($result as $row) {
 		return $row["grade_name"];
 	}
 }
-
-?>
