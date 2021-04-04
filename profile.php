@@ -210,9 +210,14 @@ WHERE teacher_id = '" . $_SESSION["teacher_id"] . "'
 
 					<div class="w3-container">
 						<label class="col-md-4 text-right">Nom du prof <span class="text-danger">*</span></label>
-						<div class="col-md-12">
+						<div class="col-md-6">
 							<input type="text" name="teacher_name" id="teacher_name" class="form-control" />
 							<span class="text-danger"><?php echo $error_teacher_name; ?></span>
+						</div>
+						<label class="col-md-4 text-right">Address mail <span class="text-danger">*</span></label>
+						<div class="col-md-6">
+							<input type="text" name="teacher_emailid" id="teacher_emailid" class="form-control" />
+							<span class="text-danger"><?php echo $error_teacher_emailid; ?></span>
 						</div>
 
 					</div>
@@ -224,13 +229,7 @@ WHERE teacher_id = '" . $_SESSION["teacher_id"] . "'
 						</div>
 
 					</div>
-					<div class="w3-container">
-						<label class="col-md-4 text-right">Address mail <span class="text-danger">*</span></label>
-						<div class="col-md-12">
-							<input type="text" name="teacher_emailid" id="teacher_emailid" class="form-control" />
-							<span class="text-danger"><?php echo $error_teacher_emailid; ?></span>
-						</div>
-					</div>
+
 					<div class="w3-container">
 						<label class="col-md-4 text-right">Qualification <span class="text-danger">*</span></label>
 						<div class="col-md-12">
